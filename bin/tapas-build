@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+var program = require('commander');
+
+program
+  .version(require('../package').version)
+  .usage('setup')
+  .option('-d, --default', 'Generate default config options in package.json.')
+  .parse(process.argv);
+
+try {
+  require('../build/main')(program);
+} catch(err) {
+  if (err.code === 'MODULE_NOT_FOUND') {
+    require('babel-core/register');
+    require('../src/main')(program);
+  } else {
+    console.log(err)
+  }
+}

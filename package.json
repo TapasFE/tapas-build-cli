@@ -1,0 +1,53 @@
+{
+  "name": "tapas-build-cli",
+  "description": "A command line tools for tapas-build command setup",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TapasFE/tapas-build-cli.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TapasFE/tapas-build-cli/issues"
+  },
+  "homepage": "https://github.com/TapasFE/tapas-build-cli#readme",
+  "preferGlobal": true,
+  "bin": {
+    "tapas-build-cli": "bin/tapas-build"
+  },
+  "scripts": {
+    "build": "babel src -d build",
+    "publish": "git push origin master --tags",
+    "test": "echo \"Error: no test specified\"",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "pre-commit": [],
+  "config": {
+    "ghooks": {
+      "commit-msg": "node ./node_modules/.bin/validate-commit-msg"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100
+    }
+  },
+  "dependencies": {
+    "babel-core": "^6.5.2",
+    "commander": "^2.9.0"
+  },
+  "devDependencies": {
+    "ghooks": "^1.0.3",
+    "semantic-release": "^4.3.5",
+    "validate-commit-msg": "^2.0.0"
+  }
+}
